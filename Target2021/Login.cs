@@ -48,5 +48,22 @@ namespace Target2021
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                MessageBox.Show("Enter key pressed");
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+               button1_Click(sender,e);
+            }
+          
+        }
     }
 }
