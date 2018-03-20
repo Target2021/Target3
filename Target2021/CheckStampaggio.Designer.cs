@@ -33,6 +33,7 @@
             this.target2021DataSet = new Target2021.Target2021DataSet();
             this.target2021DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new Target2021.Target2021DataSetTableAdapters.TableAdapterManager();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.target2021DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.target2021DataSetBindingSource)).BeginInit();
@@ -41,10 +42,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 86);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(538, 312);
+            this.dataGridView1.Size = new System.Drawing.Size(923, 467);
             this.dataGridView1.TabIndex = 0;
             // 
             // target2021DataSet
@@ -88,11 +89,21 @@
             this.tableAdapterManager.UpdateOrder = Target2021.Target2021DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UtentiTableAdapter = null;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(972, 134);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 34);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "LAVORA";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // CheckStampaggio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 478);
+            this.ClientSize = new System.Drawing.Size(1113, 510);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "CheckStampaggio";
             this.Text = "CheckStampaggio";
@@ -110,5 +121,6 @@
         private System.Windows.Forms.BindingSource target2021DataSetBindingSource;
         private Target2021DataSet target2021DataSet;
         private Target2021DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.Button button1;
     }
 }
