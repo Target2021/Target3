@@ -39,40 +39,46 @@ namespace Target2021
             dataGridView1.DataSource = source;
             sda.Update(dataTable);
             con.Close();
-            CheckGiacenza();
         }
-        private void CheckGiacenza()
+        private void CheckGiacenza(int index)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                int quantita =Convert.ToInt32(row.Cells[8].Value);
-                String stringa = "Data Source=target2021.database.windows.net;Initial Catalog=Target2021;User ID=Amministratore;Password=Barilla23";
-                string query = "SELECT Giacenza FROM GiacenzeMagazzini WHERE idPrime='" +Convert.ToString(row.Cells[9].Value )+ "'";
-                SqlConnection con = new SqlConnection(stringa);
-                SqlCommand cmd = new SqlCommand(query,con);
-                con.Open();
-                int Giacenza =Convert.ToInt32(cmd.ExecuteScalar());
-                con.Close();
-                int diff = Giacenza-quantita;
-                if(diff<0)
+                if (row.Index == index)
                 {
-                    MessageBox.Show("giacenza non sufficiente, si prega di effettuare il riordino");
-                    button1.Enabled = false;
-                    button1.BackColor = Color.Red;
+                    int quantita = Convert.ToInt32(row.Cells[8].Value);
+                    String stringa = "Data Source=target2021.database.windows.net;Initial Catalog=Target2021;User ID=Amministratore;Password=Barilla23";
+                    string query = "SELECT Giacenza FROM GiacenzeMagazzini WHERE idPrime='" + Convert.ToString(row.Cells[9].Value) + "'";
+                    SqlConnection con = new SqlConnection(stringa);
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    int Giacenza = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Close();
+                    int diff = Giacenza - quantita;
+                    if (diff < 0)
+                    {
+                        MessageBox.Show("giacenza non sufficiente, si prega di effettuare il riordino");
+                        button1.Enabled = false;
+                        button1.BackColor = Color.Red;
+                    }
+                    if (Enumerable.Range(1, 10).Contains(diff))
+                    {
+                        MessageBox.Show("materia prima in esaurimento, si prega di effettuare il riordino ");
+                        button1.Enabled = true;
+                        button1.BackColor = Color.Yellow;
+                    }
+                    if (diff > 10)
+                    {
+                        button1.Enabled = true;
+                        button1.BackColor = Color.Green;
+                    }
                 }
-                if(Enumerable.Range(1, 10).Contains(diff))
-                {
-                    MessageBox.Show("materia prima in esaurimento, si prega di effettuare il riordino ");
-                    button1.Enabled = true;
-                    button1.BackColor = Color.Yellow;
-                }
-                if(diff>10)
-                {
-                    button1.Enabled = true;
-                    button1.BackColor = Color.Green;
-                }
-
             }
+        }
+
+        private void dataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            CheckGiacenza(e.RowIndex);
         }
     }
 }
