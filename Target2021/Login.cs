@@ -38,6 +38,7 @@ namespace Target2021
                     this.Hide();
                     home.ShowDialog();
                     con.Close();
+                    this.Close();
                 }
                 else
                 {

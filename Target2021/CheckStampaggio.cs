@@ -16,12 +16,12 @@ namespace Target2021
         public CheckStampaggio()
         {
             InitializeComponent();
+            button1.Enabled = false;
         }
 
         private void CheckStampaggio_Load(object sender, EventArgs e)
         {
-            LoadStampaggio();
-            
+            LoadStampaggio();           
         }
         private void LoadStampaggio()
         {
@@ -46,6 +46,7 @@ namespace Target2021
             {
                 if (row.Index == index)
                 {
+                    button1.Enabled = true;
                     int quantita = Convert.ToInt32(row.Cells[8].Value);
                     String stringa = "Data Source=target2021.database.windows.net;Initial Catalog=Target2021;User ID=Amministratore;Password=Barilla23";
                     string query = "SELECT Giacenza FROM GiacenzeMagazzini WHERE idPrime='" + Convert.ToString(row.Cells[9].Value) + "'";
@@ -63,7 +64,7 @@ namespace Target2021
                     }
                     if (Enumerable.Range(1, 10).Contains(diff))
                     {
-                        MessageBox.Show("materia prima in esaurimento, si prega di effettuare il riordino ");
+                        MessageBox.Show("materia prima in esaurimento, si prega di effettuare il riordino ","Giacenza",MessageBoxButtons.YesNo);
                         button1.Enabled = true;
                         button1.BackColor = Color.Yellow;
                     }
